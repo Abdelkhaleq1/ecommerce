@@ -118,3 +118,11 @@ a:hover {
 .wish-btn{
 color: red;
 }
+@media (max-width: 768px) {
+  .product .addToCart{
+    transform: translateY(0);
+  
+  }
+  
+  
+}

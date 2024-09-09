@@ -48,7 +48,20 @@ customOptionsMain: OwlOptions = {
   navSpeed: 700,
   navText: ['next', 'prev'],
   nav: true,
-items:3,
+  responsive: {
+    0: {
+      items: 1
+    },
+    400: {
+      items: 1
+    },
+    740: {
+      items: 1
+    },
+    940: {
+      items: 3
+    }
+  },
 
 }
 
