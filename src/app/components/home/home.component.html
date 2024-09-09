@@ -1,0 +1,76 @@
+<!-- main slider -->
+
+<section class="mt-5 pt-5">
+   <div class="row">
+    <div class="col-md-9">
+        <div>
+            <owl-carousel-o [options]="customOptionsMain">
+                <ng-template carouselSlide> <img src="./assets/images/slider-image-1.jpeg" height="300px"  class="w-100" alt="slide1"></ng-template>  
+                <ng-template carouselSlide> <img src="./assets/images/slider-image-2.jpeg" height="300px"  class="w-100" alt="slide1"></ng-template>  
+                <ng-template carouselSlide> <img src="./assets/images/slider-image-3.jpeg" height="300px"  class="w-100" alt="slide1"></ng-template>   
+              </owl-carousel-o>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div>
+            <img src="./assets/images/grocery-banner.png" class="w-100" height="150px" alt="banner">
+            <img src="./assets/images/grocery-banner-2.jpeg" class="w-100" height="150px" alt="banner">
+        </div>
+    </div>
+   </div>
+</section>
+
+
+<!-- daynamic slider -->
+ <section class=" pt-5 mt-5     ">
+  <h2 class="h3 text-main pb-2">Popular Category</h2>
+  <owl-carousel-o [options]="customOptionsCat">
+    @for (cat of categoryList; track cat._id) {
+    <ng-template  carouselSlide>
+      <div>
+        <img [src]="cat.image" class="w-100" height="330px" [alt]="cat.name" />
+        <h3 class="h6 text-main mt-2">{{ cat.name }}</h3>
+      </div>
+    </ng-template>
+    }
+  </owl-carousel-o>
+</section>
+
+<!-- proudcts  -->
+<section class="my-5">
+  <input [(ngModel)]="text"  type="search" class="form-control mx-auto my-2 w-75 p-3" placeholder="Search by name...." >
+  <div class="row mt-5 pt-5 g-4">
+    @for (product of productList.slice(0 , 12) | search : text ; track product.id) {
+    <div class="col-md-3">
+      <div class="product p-3">
+        <div [routerLink]="['/details' ,product.id]">
+          <img class="w-100" [src]="product.imageCover" [alt]="product.title" />
+        <h3 class="text-main h6 fw-bold pt-2">{{ product.category.name }}</h3>
+        <h4 class="h5 fw-medium">
+          {{ product.title.split(" ", 2).join(" ") }}
+        </h4>
+
+        <div class="d-flex justify-content-between align-items-center">
+          <span> price: {{ product.price }} </span>
+          <div>
+            @for (item of [1,2,3,4,5].slice(0,product.ratingsAverage); track
+            $index) {
+            <span><i class="fas fa-star rating-color"></i></span>
+            } @if (product.ratingsAverage % 1 != 0) {
+            <span><i class="fas fa-star-half-stroke rating-color"></i></span>
+            }
+
+            <span>{{ product.ratingsAverage }}</span>
+          </div>
+        </div>
+        </div>
+        
+
+        <button  (click)="addToCart(product.id)" class="btn-main w-75 addToCart">Add to cart</button>
+        <span   (click)="addToWishlist(product.id) "  class="mx-3 cr "><i class="fa-solid fa-heart fa-xl "></i> </span>
+      </div>
+    </div>
+    }
+  </div>
+</section>

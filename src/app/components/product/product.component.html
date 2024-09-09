@@ -1,0 +1,36 @@
+<!-- proudcts  -->
+<section class="my-5 mt-5 pt-5">
+    <input  [(ngModel)]="text" type="search" class="form-control mx-auto my-2 w-75 p-3" placeholder="Search by name...." >
+    <div class="row mt-5 pt-5 g-4">
+      @for (product of allProducts | search : text ; track product.id) {
+      <div class="col-md-3">
+        <div class="product p-3">
+          <div [routerLink]="['/details' ,product.id]">
+            <img class="w-100" [src]="product.imageCover" [alt]="product.title" />
+          <h3 class="text-main h6 fw-bold pt-2">{{ product.category.name }}</h3>
+          <h4 class="h5 fw-medium">
+            {{ product.title.split(" ", 2).join(" ") }}
+          </h4>
+  
+          <div class="d-flex justify-content-between align-items-center">
+            <span> price: {{ product.price }} </span>
+            <div>
+              @for (item of [1,2,3,4,5].slice(0,product.ratingsAverage); track
+              $index) {
+              <span><i class="fas fa-star rating-color"></i></span>
+              } @if (product.ratingsAverage % 1 != 0) {
+              <span><i class="fas fa-star-half-stroke rating-color"></i></span>
+              }
+  
+              <span>{{ product.ratingsAverage }}</span>
+            </div>
+          </div>
+          </div>
+          
+          <button (click)="addToCart(product.id)" class="btn-main w-75 addToCart">Add to cart</button>
+          <span  (click)="addToWishlist(product.id)" class="mx-3 cr"><i class="fa-solid fa-heart fa-xl"></i> </span>
+        </div>
+      </div>
+      }
+    </div>
+  </section>

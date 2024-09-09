@@ -1,0 +1,13 @@
+<!-- proudcts  -->
+<section class="my-5 mt-5 pt-5">
+    <!-- <input  [(ngModel)]="text" type="search" class="form-control mx-auto my-2 w-75 p-3" placeholder="Search by name...." > -->
+    <div class="row mt-5 pt-5 g-4">
+      @for (item of allCategories ; track item._id) {
+      <div class=" product cr card col-md-3">
+      <img [src]="item.image" class="w-100" height="350px" [alt]="item.name">
+      <h3 class="text-main text-center"> {{item.name}} </h3>
+
+    </div>
+}
+</div>
+  </section>

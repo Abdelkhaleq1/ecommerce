@@ -1,0 +1,40 @@
+<section class="mt-5 pt-5 my-4" >
+    <div class="bg-main-light p-5 rounded-4">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2 class="text-main"> My Wishlist</h2> 
+    <!-- <button (click)="" type="button" class="btn btn-outline-danger"> Clear cart </button>   -->
+        </div>
+    
+    
+    <!-- <p class="text-main fw-bold"> Total Wishlist Price : {{wishListProduct.price|  currency: 'GBP' }} </p> -->
+    
+    
+    
+    @for (item of wishListProduct; track $index ) {
+    
+    <div class="row g-4 pt-2 border-bottom">
+        <div class="col-sm-1">
+            <img [src]='item.imageCover' class="w-100" [alt]="item.title">
+        </div>
+        <div class="col-sm-11 d-flex justify-content-between align-items-center">
+            <div>
+               <h3 class="h5">
+                {{item.title}}
+               </h3> 
+               <span class="text-main">
+                 {{item.price |  currency: 'GBP'}}
+               </span>
+               <button (click)="removeItem(item.id)" class="remove-btn text-main"> <i class="fa-solid fa-trash"></i> Remove </button>
+               
+            </div>
+            <div class=" ">
+               <button (click)="addToCartW(item.id)"  class="btn-main"> Add To Cart </button>  
+            </div>
+        </div>
+    </div>
+    
+    }
+    
+    </div>
+    
+    </section>

@@ -1,0 +1,19 @@
+<section class="mt-5 pt-5 my-4" >
+    <div class="bg-main-light p-5 rounded-4">
+        <div class="">
+          <h2 class="fw-bold">  #confimation</h2> 
+         <p class="text-main fw-bolder mt-3 px-2 ">Your order has been Confirmed</p>
+         <p class=" px-2">Thank you! , <span class="fw-bolder">{{userData.name}} </span></p>
+        </div>
+ 
+    
+    @for (p of orderDetails.cartItems; track $index ) {
+    
+    <div class="row g-4 pt-2 border-bottom">
+        <img [src]="p.product.imageCover" alt="">
+       
+        </div>
+    } 
+    </div>
+    
+    </section>
